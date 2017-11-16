@@ -67,11 +67,47 @@ Sending 15 ETH to the multisig in tx [0x748997ba6176f1f4e6f7a6e44ffb3686a6b50a0e
 
 <br />
 
-### Set Daily Limit To 1 ETH
+### Change Daily Limit To 1 ETH
 
 ![](images/ChangeDailyLimitTo1ETH-20171117-010602.png)
 
 ![](images/ChangeDailyLimitTo1ETHTx-20171117-010740.png)
+
+Tx [0xba639889f2031c4c3abc558a7d97ebf8ea0547eca0fd36aeaa76cb2e07179833](https://ropsten.etherscan.io/tx/0xba639889f2031c4c3abc558a7d97ebf8ea0547eca0fd36aeaa76cb2e07179833)
+
+![](images/ChangeDailyLimitTo1ETHTx-EtherScan-20171117-011839.png)
+
+Click on the Event Log tab
+
+![](images/ChangeDailyLimitTo1ETHTx-EtherScan-EventLog-20171117-012030.png)
+
+Note that:
+
+* The first event parameter `000000000000000000000000aaaed70fa30bf42b1620d0765276b0ccadd914cf` is the address of AAA that sent the tx
+* The second event parameter `aee8438264dddfe4780105356e419ae43f0abe44f0f1102337e7c17855a7e374` is a hash of the tx that needs to be confirmed by
+  another owner account
+
+<br />
+
+### Confirm Change Daily Limit To 1 ETH
+
+From Mist, confirm the multisig tx with hash `aee8438264dddfe4780105356e419ae43f0abe44f0f1102337e7c17855a7e374` by account BBB:
+
+![](images/ChangeDailyLimitTo1ETH-ConfirmInMist-20171117-012432.png)
+
+Send transaction
+
+![](images/ChangeDailyLimitTo1ETH-ConfirmInMist-Tx-20171117-012610.png)
+
+Tx [0x14eacfb0487adc25ad0642387ed3baf924d1b903dd09ed20e0cb08a66d722ef0](https://ropsten.etherscan.io/tx/0x14eacfb0487adc25ad0642387ed3baf924d1b903dd09ed20e0cb08a66d722ef0):
+
+![](images/ChangeDailyLimitTo1ETHTx-ConfirmInMist-EtherScan-20171117-012838.png)
+
+
+<br />
+
+
+
 
 <br />
 
