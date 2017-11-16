@@ -11,11 +11,41 @@ This testing will be performed on the Ropsten network using the following accoun
 
 This testing will be performed from the Ethereum Wallet and Mist applications.
 
+From my testing, changing the parameters of the Ethereum Wallet multisig cannot be achieved. See bugs:
+
+* [Want to change Multisig Daily Limit #162](https://github.com/ethereum/mist/issues/162)
+* [Very very hard to change parameters #157](https://github.com/ethereum/meteor-dapp-wallet/issues/157)
+
 <br />
 
 <hr />
 
 ## Table Of Contents
+
+<br />
+
+<hr />
+
+## Function Hashes
+
+From Remix:
+
+* "52375093": "m_lastDay()",
+* "7065cb48": "addOwner(address)",
+* "f00d4b5d": "changeOwner(address,address)",
+* "ba51a6df": "changeRequirement(uint256)",
+* "797af627": "confirm(bytes32)",
+* "b61d27f6": "execute(address,uint256,bytes)"
+* "c2cf7326": "hasConfirmed(bytes32,address)",
+* "2f54bf6e": "isOwner(address)",
+* "f1736d86": "m_dailyLimit()",
+* "4123cb6b": "m_numOwners()",
+* "746c9171": "m_required()",
+* "659010e7": "m_spentToday()",
+* "173825d9": "removeOwner(address)",
+* "5c52c2f5": "resetSpentToday()",
+* "b75c7dc6": "revoke(bytes32)",
+* "b20d30a9": "setDailyLimit(uint256)"
 
 <br />
 
