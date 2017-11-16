@@ -61,6 +61,12 @@ Sending 15 ETH to the multisig in tx [0x748997ba6176f1f4e6f7a6e44ffb3686a6b50a0e
 
 <br />
 
+### Import Multisig Into Mist
+
+![](images/ImportMultisigIntoMist-20171117-011445.png)
+
+<br />
+
 ### Set Daily Limit To 1 ETH
 
 ![](images/ChangeDailyLimitTo1ETH-20171117-010602.png)
