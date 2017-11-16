@@ -1,20 +1,35 @@
 # Ethereum Wallet Multisig Test
 
-This GitHub repository contains the documentation on some testing of the Ethereum Wallet (Foundation) Multisig.
+This page contains the documentation on some testing of the Ethereum Wallet (Foundation) Multisig.
 
-This testing will be performed on the Ropsten network using the following accounts:
+<br />
+
+## Summary
+
+This testing was performed on the Ropsten network using the following accounts:
 
 * AAA - [0xaaAed70fA30bf42B1620D0765276B0cCaDd914CF](https://ropsten.etherscan.io/address/0xaaAed70fA30bf42B1620D0765276B0cCaDd914CF)
 * BBB - [0xbBBb05D4eC67bAe183a59232D5Cd24f4b949C369](https://ropsten.etherscan.io/address/0xbBBb05D4eC67bAe183a59232D5Cd24f4b949C369)
 * CCC - [0xCcCc51A144eFa3f7F0BE4Cf6D7020A455a8aA375](https://ropsten.etherscan.io/address/0xCcCc51A144eFa3f7F0BE4Cf6D7020A455a8aA375)
 * DDD - [0xdddBC0B42A0910be647550d99b5defF28b6Fb97b](https://ropsten.etherscan.io/address/0xdddBC0B42A0910be647550d99b5defF28b6Fb97b)
 
-This testing will be performed from the Ethereum Wallet and Mist applications.
+This testing was performed using Ethereum Wallet and Mist applications.
 
-From my testing, changing the parameters of the Ethereum Wallet multisig cannot be achieved. See bugs:
+### Results
+
+From my testing, changing the parameters of the Ethereum Wallet multisig cannot be achieved. See the bugs:
 
 * [Want to change Multisig Daily Limit #162](https://github.com/ethereum/mist/issues/162)
 * [Very very hard to change parameters #157](https://github.com/ethereum/meteor-dapp-wallet/issues/157)
+
+This means that the Ethereum Wallet multisig has to be set up correctly the first time, as the daily limit and number of signatures required cannot
+be updated. And the owner accounts cannot be added to or removed from the multisig. If you need to change these parameters, it is easier to set up
+a new multisig wallet and transfer your ETH and tokens to the new wallet.
+
+Once set up, the Ethereum Wallet multisig works well to transfer ethers (ETH), with the required confirmations by owners.
+
+Note that tokens can be stored on the Ethereum Wallet multisig account, but the transfer of tokens out of the multisig is not restricted by the
+daily limit.
 
 <br />
 
@@ -22,69 +37,21 @@ From my testing, changing the parameters of the Ethereum Wallet multisig cannot 
 
 ## Table Of Contents
 
-<br />
-
-<hr />
-
-## Function Hashes
-
-From Remix:
-
-* "52375093": "m_lastDay()",
-* "7065cb48": "addOwner(address)",
-* "f00d4b5d": "changeOwner(address,address)",
-* "ba51a6df": "changeRequirement(uint256)",
-* "797af627": "confirm(bytes32)",
-* "b61d27f6": "execute(address,uint256,bytes)"
-* "c2cf7326": "hasConfirmed(bytes32,address)",
-* "2f54bf6e": "isOwner(address)",
-* "f1736d86": "m_dailyLimit()",
-* "4123cb6b": "m_numOwners()",
-* "746c9171": "m_required()",
-* "659010e7": "m_spentToday()",
-* "173825d9": "removeOwner(address)",
-* "5c52c2f5": "resetSpentToday()",
-* "b75c7dc6": "revoke(bytes32)",
-* "b20d30a9": "setDailyLimit(uint256)"
-
-<br />
-
-<hr />
-
-## Events
-
-Following are the events emitted by the multisig smart contract
-
-* `event Confirmation(address owner, bytes32 operation)`
-
-  `web3.sha3("Confirmation(address,bytes32)")` => `0xe1c52dc63b719ade82e8bea94cc41a0d5d28e4aaf536adb5e9cccc9ff8c1aeda`
-* `event Revoke(address owner, bytes32 operation)`
-
-  `web3.sha3("Revoke(address,bytes32)")` => `0xc7fb647e59b18047309aa15aad418e5d7ca96d173ad704f1031a2c3d7591734b`
-* `event OwnerChanged(address oldOwner, address newOwner)`
-
-  `web3.sha3("OwnerChanged(address,address)")` => `0xb532073b38c83145e3e5135377a08bf9aab55bc0fd7c1179cd4fb995d2a5159c`
-* `event OwnerAdded(address newOwner)`
-
-  `web3.sha3("OwnerAdded(address)")` => `0x994a936646fe87ffe4f1e469d3d6aa417d6b855598397f323de5b449f765f0c3`
-* `event OwnerRemoved(address oldOwner)`
-
-  `web3.sha3("OwnerRemoved(address)")` => `0x58619076adf5bb0943d100ef88d52d7c3fd691b19d3a9071b555b651fbf418da`
-* `event RequirementChanged(uint newRequirement)`
-
-  `web3.sha3("RequirementChanged(uint256)")` => `0xacbdb084c721332ac59f9b8e392196c9eb0e4932862da8eb9beaf0dad4f550da`
-* `event Deposit(address from, uint value)`
-
-  `web3.sha3("Deposit(address,uint256)")` => `0xe1fffcc4923d04b559f4d29a8bfc6cda04eb5b0d3c460751c2402c5c5cc9109c`
-* `event SingleTransact(address owner, uint value, address to, bytes data)`
-
-  `web3.sha3("SingleTransact(address,uint256,address,bytes)")` => `0x92ca3a80853e6663fa31fa10b99225f18d4902939b4c53a9caae9043f6efd004`
-* `event MultiTransact(address owner, bytes32 operation, uint value, address to, bytes data)`
-
-  `web3.sha3("MultiTransact(address,bytes32,uint256,address,bytes)")` => `0xe7c957c06e9a662c1a6c77366179f5b702b97651dc28eee7d5bf1dff6e40bb4a`
-* `event ConfirmationNeeded(bytes32 operation, address initiator, uint value, address to, bytes data)`
-
-  `web3.sha3("ConfirmationNeeded(bytes32,address,uint256,address,bytes)")` => `0x1733cbb53659d713b79580f79f3f9ff215f78a7c7aa45890f3b89fc5cddfbf32`
+* [Summary](#summary)
+  * [Results](#results)
+* [Setting Up The Multisig With Three Owners](#setting-up-the-multisig-with-three-owners)
+  * [Setup Options](#setup-options)
+  * [Sending Transaction](#sending-transaction)
+  * [Created Wallet](#created-wallet)
+  * [Send ETH To Multisig](#send-eth-to-multisig)
+  * [Multisig With 15 ETH](#multisig-with-15-eth)
+  * [Import Multisig Into Mist](#import-multisig-into-mist)
+  * [Change Daily Limit To 1 ETH](#change-daily-limit-to-1-eth)
+  * [Confirm Change Daily Limit To 1 ETH](#confirm-change-daily-limit-to-1-eth)
+* [Function Hashes, Event Signatures And Source Code](#function-hashes-event-signatures-and-source-code)
+  * [Function Hashes](#function-hashes)
+  * [Event Signatures](#event-signatures)
+  * [Source Code](#source-code)
 
 <br />
 
@@ -184,16 +151,75 @@ Note that:
 * The second event parameter `aee8438264dddfe4780105356e419ae43f0abe44f0f1102337e7c17855a7e374` is a hash of the tx that needs to be confirmed by
   another owner account
 
-<br />
-
-
-
+**NOTE - See the bugs listed at the top of this document - the multisig parameters cannot be altered**
 
 <br />
 
 <hr />
 
-## Ethereum Wallet Multisig Source Code
+## Function Hashes, Event Signatures And Source Code
+
+### Function Hashes
+
+From Remix, by compiling the source code below:
+
+* "52375093": "m_lastDay()",
+* "7065cb48": "addOwner(address)",
+* "f00d4b5d": "changeOwner(address,address)",
+* "ba51a6df": "changeRequirement(uint256)",
+* "797af627": "confirm(bytes32)",
+* "b61d27f6": "execute(address,uint256,bytes)"
+* "c2cf7326": "hasConfirmed(bytes32,address)",
+* "2f54bf6e": "isOwner(address)",
+* "f1736d86": "m_dailyLimit()",
+* "4123cb6b": "m_numOwners()",
+* "746c9171": "m_required()",
+* "659010e7": "m_spentToday()",
+* "173825d9": "removeOwner(address)",
+* "5c52c2f5": "resetSpentToday()",
+* "b75c7dc6": "revoke(bytes32)",
+* "b20d30a9": "setDailyLimit(uint256)"
+
+<br />
+
+### Event Signatures
+
+Following are the events emitted by the multisig smart contract
+
+* `event Confirmation(address owner, bytes32 operation)`
+
+  `web3.sha3("Confirmation(address,bytes32)")` => `0xe1c52dc63b719ade82e8bea94cc41a0d5d28e4aaf536adb5e9cccc9ff8c1aeda`
+* `event Revoke(address owner, bytes32 operation)`
+
+  `web3.sha3("Revoke(address,bytes32)")` => `0xc7fb647e59b18047309aa15aad418e5d7ca96d173ad704f1031a2c3d7591734b`
+* `event OwnerChanged(address oldOwner, address newOwner)`
+
+  `web3.sha3("OwnerChanged(address,address)")` => `0xb532073b38c83145e3e5135377a08bf9aab55bc0fd7c1179cd4fb995d2a5159c`
+* `event OwnerAdded(address newOwner)`
+
+  `web3.sha3("OwnerAdded(address)")` => `0x994a936646fe87ffe4f1e469d3d6aa417d6b855598397f323de5b449f765f0c3`
+* `event OwnerRemoved(address oldOwner)`
+
+  `web3.sha3("OwnerRemoved(address)")` => `0x58619076adf5bb0943d100ef88d52d7c3fd691b19d3a9071b555b651fbf418da`
+* `event RequirementChanged(uint newRequirement)`
+
+  `web3.sha3("RequirementChanged(uint256)")` => `0xacbdb084c721332ac59f9b8e392196c9eb0e4932862da8eb9beaf0dad4f550da`
+* `event Deposit(address from, uint value)`
+
+  `web3.sha3("Deposit(address,uint256)")` => `0xe1fffcc4923d04b559f4d29a8bfc6cda04eb5b0d3c460751c2402c5c5cc9109c`
+* `event SingleTransact(address owner, uint value, address to, bytes data)`
+
+  `web3.sha3("SingleTransact(address,uint256,address,bytes)")` => `0x92ca3a80853e6663fa31fa10b99225f18d4902939b4c53a9caae9043f6efd004`
+* `event MultiTransact(address owner, bytes32 operation, uint value, address to, bytes data)`
+
+  `web3.sha3("MultiTransact(address,bytes32,uint256,address,bytes)")` => `0xe7c957c06e9a662c1a6c77366179f5b702b97651dc28eee7d5bf1dff6e40bb4a`
+* `event ConfirmationNeeded(bytes32 operation, address initiator, uint value, address to, bytes data)`
+
+  `web3.sha3("ConfirmationNeeded(bytes32,address,uint256,address,bytes)")` => `0x1733cbb53659d713b79580f79f3f9ff215f78a7c7aa45890f3b89fc5cddfbf32`
+
+<br />
+
+### Source Code
 
 From [0x52f2b65681b3b78e862436bd38e8e9ab4ff0da96](https://ropsten.etherscan.io/address/0x52f2b65681b3b78e862436bd38e8e9ab4ff0da96#code):
 
@@ -587,3 +613,9 @@ contract Wallet is multisig, multiowned, daylimit {
     mapping (bytes32 => Transaction) m_txs;
 }
 ```
+
+<br />
+
+<br />
+
+(c) BokkyPooBah / Bok Consulting Pty Ltd - Nov 17 2017. The MIT Licence.
