@@ -21,6 +21,45 @@ This testing will be performed from the Ethereum Wallet and Mist applications.
 
 <hr />
 
+## Events
+
+Following are the events emitted by the multisig smart contract
+
+* `event Confirmation(address owner, bytes32 operation)`
+
+  `web3.sha3("Confirmation(address,bytes32)")` => `0xe1c52dc63b719ade82e8bea94cc41a0d5d28e4aaf536adb5e9cccc9ff8c1aeda`
+* `event Revoke(address owner, bytes32 operation)`
+
+  `web3.sha3("Revoke(address,bytes32)")` => `0xc7fb647e59b18047309aa15aad418e5d7ca96d173ad704f1031a2c3d7591734b`
+* `event OwnerChanged(address oldOwner, address newOwner)`
+
+  `web3.sha3("OwnerChanged(address,address)")` => `0xb532073b38c83145e3e5135377a08bf9aab55bc0fd7c1179cd4fb995d2a5159c`
+* `event OwnerAdded(address newOwner)`
+
+  `web3.sha3("OwnerAdded(address)")` => `0x994a936646fe87ffe4f1e469d3d6aa417d6b855598397f323de5b449f765f0c3`
+* `event OwnerRemoved(address oldOwner)`
+
+  `web3.sha3("OwnerRemoved(address)")` => `0x58619076adf5bb0943d100ef88d52d7c3fd691b19d3a9071b555b651fbf418da`
+* `event RequirementChanged(uint newRequirement)`
+
+  `web3.sha3("RequirementChanged(uint256)")` => `0xacbdb084c721332ac59f9b8e392196c9eb0e4932862da8eb9beaf0dad4f550da`
+* `event Deposit(address from, uint value)`
+
+  `web3.sha3("Deposit(address,uint256)")` => `0xe1fffcc4923d04b559f4d29a8bfc6cda04eb5b0d3c460751c2402c5c5cc9109c`
+* `event SingleTransact(address owner, uint value, address to, bytes data)`
+
+  `web3.sha3("SingleTransact(address,uint256,address,bytes)")` => `0x92ca3a80853e6663fa31fa10b99225f18d4902939b4c53a9caae9043f6efd004`
+* `event MultiTransact(address owner, bytes32 operation, uint value, address to, bytes data)`
+
+  `web3.sha3("MultiTransact(address,bytes32,uint256,address,bytes)")` => `0xe7c957c06e9a662c1a6c77366179f5b702b97651dc28eee7d5bf1dff6e40bb4a`
+* `event ConfirmationNeeded(bytes32 operation, address initiator, uint value, address to, bytes data)`
+
+  `web3.sha3("ConfirmationNeeded(bytes32,address,uint256,address,bytes)")` => `0x1733cbb53659d713b79580f79f3f9ff215f78a7c7aa45890f3b89fc5cddfbf32`
+
+<br />
+
+<hr />
+
 ## Setting Up The Multisig With Three Owners
 
 ### Setup Options
@@ -83,6 +122,7 @@ Click on the Event Log tab
 
 Note that:
 
+* The topic `0xe1c52dc63b719ade82e8bea94cc41a0d5d28e4aaf536adb5e9cccc9ff8c1aeda` represents the `Confirmation(address owner, bytes32 operation)` event
 * The first event parameter `000000000000000000000000aaaed70fa30bf42b1620d0765276b0ccadd914cf` is the address of AAA that sent the tx
 * The second event parameter `aee8438264dddfe4780105356e419ae43f0abe44f0f1102337e7c17855a7e374` is a hash of the tx that needs to be confirmed by
   another owner account
@@ -103,6 +143,16 @@ Tx [0x14eacfb0487adc25ad0642387ed3baf924d1b903dd09ed20e0cb08a66d722ef0](https://
 
 ![](images/ChangeDailyLimitTo1ETHTx-ConfirmInMist-EtherScan-20171117-012838.png)
 
+Click on the Event Log tab
+
+![](images/ChangeDailyLimitTo1ETHTx-ConfirmInMist-EtherScan-EventLog-20171117-015633.png)
+
+Note that:
+
+* The topic `0xe1c52dc63b719ade82e8bea94cc41a0d5d28e4aaf536adb5e9cccc9ff8c1aeda` represents the `Confirmation(address owner, bytes32 operation)` event
+* The first event parameter `000000000000000000000000bbbb05d4ec67bae183a59232d5cd24f4b949c369` is the address of BBB that sent the tx
+* The second event parameter `aee8438264dddfe4780105356e419ae43f0abe44f0f1102337e7c17855a7e374` is a hash of the tx that needs to be confirmed by
+  another owner account
 
 <br />
 
